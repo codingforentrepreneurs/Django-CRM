@@ -9,7 +9,7 @@ repos:
   hooks:
     - id: export-requirements
       name: Export prod requirements.txt
-      entry: bash -c 'uv export --no-dev --no-hashes -o requirements.prod.txt'
+      entry: bash -c 'uv export --no-dev --no-hashes -o requirements.prod.txt && git add requirements.prod.txt'
       language: system
       pass_filenames: false
       files: ^(pyproject\.toml|uv\.lock)$
