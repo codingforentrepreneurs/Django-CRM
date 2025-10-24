@@ -121,7 +121,7 @@ dev = [
 
 [[package]]
 name = "django-googler"
-version = "0.0.17"
+version = "0.0.18"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "django" },
@@ -130,9 +130,9 @@ dependencies = [
     { name = "google-auth" },
     { name = "google-auth-oauthlib" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/82/ca/e25c769dfd6df1e346178e916a439c89ae9b9912a612fbf6c3d5f2b93920/django_googler-0.0.17.tar.gz", hash = "sha256:417a3c7e79652e20b17bb58e42989b01bc91f3cf2d02ac3aa1c1a5e3c42f8fb4", size = 63147, upload-time = "2025-10-20T21:56:38.736Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/d0/33/5a1430ee0dafec88f54efdafc1b1933f24ac817d62baa1e61f3b7fc61ccb/django_googler-0.0.18.tar.gz", hash = "sha256:31a7952666bbaad196060c6f52e5e439bb572f4ebf278da1d5ce4c841bf72cb5", size = 63179, upload-time = "2025-10-24T21:44:41.043Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/c5/45/88cbaaef6f7c6f156f16485c1ee4adf63b16734ee76b2bc90d9e2fbecf3c/django_googler-0.0.17-py3-none-any.whl", hash = "sha256:ec2de07af72997703c4411466a5e711bd9c5fe62f11466bb250fdeaf34d115d0", size = 34145, upload-time = "2025-10-20T21:56:37.357Z" },
+    { url = "https://files.pythonhosted.org/packages/35/44/d7ed588eea6f103ad55c49f6d41c91d7881dc4ac9f09311626f2bf3fea67/django_googler-0.0.18-py3-none-any.whl", hash = "sha256:4fa376afc418c95bebb196f46028ce829b0d1d932960d3b1fb41da232bf2c586", size = 34177, upload-time = "2025-10-24T21:44:39.684Z" },
 ]
 
 [[package]]
