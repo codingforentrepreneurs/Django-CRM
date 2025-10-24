@@ -31,7 +31,7 @@ DEBUG = (
 ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = "auth.User"  # default value
-
+LOGIN_REDIRECT_URL = "/"  # /accounts/profile
 # Application definition
 INSTALLED_APPS = [
     "django.contrib.admin",
