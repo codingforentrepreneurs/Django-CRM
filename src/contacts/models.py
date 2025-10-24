@@ -9,3 +9,4 @@ User = settings.AUTH_USER_MODEL  # -> "auth.User"
 class Contact(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     email = models.EmailField()
+    notes = models.TextField(blank=True, default="")
