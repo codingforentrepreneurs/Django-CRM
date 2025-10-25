@@ -1,22 +1,21 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  </head>
-  <body>
-    <h1 class="text-3xl font-bold text-red-500">
-      Hello there {{ request.user }} - {{ not_actual_context }} - {{ my_value }}
-    </h1>
-    {% if not_actual_context %}
-        something here
-    {% else %}
-        not actual context is missing
-    {% endif %}
+{% extends "base.html" %}
 
-    {% for my_var_name in colors %}
-        <li>{{ my_var_name }}</li>
-    {% endfor %}
-  </body>
-</html>
+{% block head_title %}Dashboard - {{ block.super }}{% endblock %}
+
+{% block content %}
+
+
+<h1 class="text-3xl font-bold text-red-500">
+    Hello there {{ request.user }} - {{ not_actual_context }} - {{ my_value }}
+  </h1>
+  {% if not_actual_context %}
+      something here
+  {% else %}
+      not actual context is missing
+  {% endif %}
+
+  {% for my_var_name in colors %}
+      <li>{{ my_var_name }}</li>
+  {% endfor %}
+
+{% endblock content %}
