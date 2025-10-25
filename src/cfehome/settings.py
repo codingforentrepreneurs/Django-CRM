@@ -28,7 +28,7 @@ DEBUG = (
     str(os.environ.get("DJANGO_DEBUG")).lower() == "true"
 )  # config("DJANGO_DEBUG", default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 AUTH_USER_MODEL = "auth.User"  # default value
 LOGIN_REDIRECT_URL = "/"  # /accounts/profile
@@ -51,6 +51,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",

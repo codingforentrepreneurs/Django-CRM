@@ -74,3 +74,5 @@ urllib3==2.5.0
     # via requests
 virtualenv==20.35.3
     # via pre-commit
+whitenoise==6.11.0
+    # via django-crm
