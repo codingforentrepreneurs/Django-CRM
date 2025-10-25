@@ -126,6 +126,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = "static/"
+# yo git, don't track these files it muddys up my repo!
+# yo prod, these files are for production
+# object storage
+# nginx folder
+# whitenoise
+STATIC_ROOT = BASE_DIR / "local-cdn"
+
+# yo git, remember my custom css and otherwise
+STATICFILES_DIRS = [BASE_DIR / "mystaticfiles"]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
