@@ -1,5 +1,9 @@
+from django.conf import settings
 from django.shortcuts import redirect
 from django.http import HttpResponse
+
+TEMPLATES_DIR = settings.TEMPLATES_DIR
+print("TEMPLATES_DIR", TEMPLATES_DIR, TEMPLATES_DIR.exists())
 
 
 # Create your views here.
@@ -12,20 +16,10 @@ def dashboard_webpage(request, *args, **kwargs):
     print(request.user, request.user.is_authenticated)
     if not request.user.is_authenticated:
         return redirect("/auth/google/login/")
-    html = "<h1 style='color:red'>Hello World</h1>"
-    html = """
-    <!doctype html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  </head>
-  <body>
-    <h1 class="text-3xl font-bold text-red-500">
-      Hello world!
-    </h1>
-  </body>
-</html>
-"""
-    return HttpResponse(html)
+    # html = "<h1 style='color:red'>Hello World</h1>"
+    dashboard_html = TEMPLATES_DIR / "dashboard.html"
+    if not dashboard_html.exists():
+        return HttpResponse("Not found", status=404)
+    dashboard_html_val = dashboard_html.read_text()
+    _html = dashboard_html_val.format(my_value=str(request.user))
+    return HttpResponse(_html)
