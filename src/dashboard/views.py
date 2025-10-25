@@ -7,6 +7,15 @@ TEMPLATES_DIR = settings.TEMPLATES_DIR
 print("TEMPLATES_DIR", TEMPLATES_DIR, TEMPLATES_DIR.exists())
 
 
+def get_image(request):
+    # nginx -> load folder ->
+    # Object Storage -> aws s3 -> cloudflare r2 -> render all static content
+    # django-storages
+    # whitenoise
+    pass
+    # return read_image -> bytes??
+
+
 # Create your views here.
 # request -> /dashboard -> django -> urls.py -> view -> response
 # request -> html
