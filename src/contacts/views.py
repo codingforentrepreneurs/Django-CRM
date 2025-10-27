@@ -14,10 +14,7 @@ def contacts_detail_view(request, contact_id=None):
         raise Http404(f"Contact with id of {contact_id} not found")
     context = {"contact": instance}
     Event.objects.create(
-        user=user,
-        type=Event.EventType.VIEWED,
-        object_id=instance.id,
-        model_name="contacts.content",
+        user=user, type=Event.EventType.VIEWED, content_object=instance
     )
     return render(request, "contacts/detail.html", context)
 
