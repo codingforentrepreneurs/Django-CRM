@@ -4,4 +4,10 @@
 
 {{ object_list }}
 
+{% for object in object_list %}
+<li>{{ object.email }}</li>
+{% empty %}
+<p>No contacts found</p>
+{% endfor %}
+
 {% endblock content %}
