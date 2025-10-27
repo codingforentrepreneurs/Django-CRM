@@ -18,11 +18,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from contacts.views import contacts_list_view
+from contacts.views import contacts_list_view, contacts_detail_view
 from dashboard.views import dashboard_webpage, about_us_page
 
 urlpatterns = [
     path("", dashboard_webpage),
+    path("contacts/<int:contact_id>/", contacts_detail_view),
     path("contacts/", contacts_list_view),
     path("dashboard/", dashboard_webpage),
     path("about/", about_us_page),
