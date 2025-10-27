@@ -18,4 +18,5 @@ dependencies = [
 dev = [
   "pip>=25.2",
   "pre-commit>=4.3",
+  "rav>=0.1.1",
 ]

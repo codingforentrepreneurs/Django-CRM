@@ -32,7 +32,7 @@ def dashboard_webpage(request, *args, **kwargs):
         "not_actual_context": "now it's ready",
         "colors": ["red", "blue"],
     }
-    return render(request, "dashboard.html", template_context)
+    return render(request, "dashboard/main.html", template_context)
     # html = "<h1 style='color:red'>Hello World</h1>"
     # dashboard_html = TEMPLATES_DIR / "dashboard.html"
     # if not dashboard_html.exists():

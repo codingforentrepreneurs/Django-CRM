@@ -1,0 +1,39 @@
+downloads:
+  staticfiles_prod:
+    name: vendor
+    destination: staticfiles/vendors
+    verbose: true
+    raise_on_error: true
+    overwrite: true
+    files:
+      - name: theme.min.css
+        overwrite: false
+        url: https://raw.githubusercontent.com/jmitchel3/django-flowbite/refs/heads/main/src/django_flowbite/staticfiles/theme/theme.min.css
+      - name: flowbite.min.css
+        overwrite: false
+        url: https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css
+      - name: flowbite.min.js
+        overwrite: false
+        url: https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js
+      - name: flowbite.min.js.map
+        overwrite: false
+        url: https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js.map
+  staticfiles_dev:
+    name: vendor
+    destination: src/mystaticfiles/vendors
+    verbose: true
+    raise_on_error: true
+    overwrite: true
+    files:
+      - name: theme.min.css
+        overwrite: false
+        url: https://raw.githubusercontent.com/jmitchel3/django-flowbite/refs/heads/main/src/django_flowbite/staticfiles/theme/theme.min.css
+      - name: flowbite.min.css
+        overwrite: false
+        url: https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css
+      - name: flowbite.min.js
+        overwrite: false
+        url: https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js
+      - name: flowbite.min.js.map
+        overwrite: false
+        url: https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js.map
