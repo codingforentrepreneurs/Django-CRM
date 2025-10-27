@@ -1,7 +1,22 @@
+src/mystaticfiles/custom-theme
 src/mystaticfiles/vendors
 src/local-cdn
 .DS_Store
 
+
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+*.sqlite3
+node_modules/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
@@ -62,7 +77,6 @@ cover/
 # Django stuff:
 *.log
 local_settings.py
-*.sqlite3
 db.sqlite3
 db.sqlite3-journal
 
