@@ -14,6 +14,7 @@ class Event(models.Model):
         # enum = "db_val", "Dispaly value"
         CREATED = "created", "Create Event"
         VIEWED = "viewed", "View Event"
+        SAVED = "saved", "Save or Update Event"
 
     user = models.ForeignKey(
         User,
