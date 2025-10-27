@@ -1,17 +1,16 @@
 from django.dispatch import receiver
-from django.db.models.signals import post_save
 
+from .signals import event_did_trigger
 from .models import Event
 
 
-@receiver(post_save)
-def handle_post_save_signal(sender, instance, created, *args, **kwargs):
-    print(sender, instance, created, args, kwargs)
-    if sender == Event:
-        return
-    elif isinstance(instance, Event):
-        return
-    event_type = Event.EventType.SAVED
-    if created:
-        event_type = Event.EventType.CREATED
-    Event.objects.create(type=event_type, content_object=instance)
+@receiver(event_did_trigger)
+def handle_post_save_signal(
+    sender, event_type, content_object, user=None, *args, **kwargs
+):
+    # print(sender, event_type,content_object,user )
+    Event.objects.create(
+        type=event_type,
+        content_object=content_object,
+        user=user,
+    )
