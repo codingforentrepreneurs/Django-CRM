@@ -6,8 +6,12 @@
     <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 ">
         {% include "contacts/snippets/contact-card.html" with contact=contact detail=True %}
     </div>
-    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 ">{{ analytics }}</div>
-      <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 ">{{ reverse_events }} - {{ reverse_events.count }}</div>
+    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 ">
+     {% for data in analytics %}
+          <li>{{ data.bucket }} - {{ data.type }} - {{ data.type_count }}</li>
+     {% endfor %}
+    </div>
+
   </section>
 
 {% endblock content %}

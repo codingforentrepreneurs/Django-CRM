@@ -13,21 +13,17 @@ def get_event_analytics(content_object):
     ctype = ContentType.objects.get_for_model(ModelKlass)
     now = timezone.now()
     oldest_time = now - timedelta(hours=6)
+    dataset_range = (oldest_time, now)
+    chunk_time = "15 minutes"
     # if hasattr(content_object, "created_at"):
     #     oldest_time = content_object.created_at
-    range_1 = (now - timedelta(hours=2), now - timedelta(hours=1))
-    range_2 = (now - timedelta(hours=1), now)
-    qs = Event.objects.filter(
-        time__gte=oldest_time, content_type=ctype, object_id=content_object.id
+    dataset = (
+        Event.timescale.filter(
+            time__range=dataset_range, content_type=ctype, object_id=content_object.id
+        )
+        .time_bucket("time", chunk_time)
+        .values("bucket", "type")
+        .annotate(type_count=Count("type"))
+        .order_by("bucket", "type")
     )
-    range_1_qs = (
-        qs.filter(time__range=range_1)
-        .values("type")
-        .annotate(type_counts=Count("type"))
-    )
-    range_2_qs = (
-        qs.filter(time__range=range_2)
-        .values("type")
-        .annotate(type_counts=Count("type"))
-    )
-    return {"range_1": range_1_qs, "range_2": range_2_qs}
+    return dataset
