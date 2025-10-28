@@ -6,7 +6,8 @@
     <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 ">
         {% include "contacts/snippets/contact-card.html" with contact=contact detail=True %}
     </div>
-    {{ analytics }}
+    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 ">{{ analytics }}</div>
+      <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 ">{{ reverse_events }} - {{ reverse_events.count }}</div>
   </section>
 
 {% endblock content %}
