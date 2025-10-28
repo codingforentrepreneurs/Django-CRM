@@ -92,6 +92,18 @@ DATABASES = {
     }
 }
 
+DATABASE_URL = os.environ.get("DATABASE_URL")
+if DATABASE_URL:
+    import dj_database_url  # noqa
+
+    DATABASES = {
+        "default": dj_database_url.config(
+            default=DATABASE_URL,
+            engine="timescale.db.backends.postgresql",
+            conn_max_age=600,
+        )
+    }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
