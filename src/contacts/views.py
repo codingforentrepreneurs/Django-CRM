@@ -3,6 +3,7 @@ from django.http import Http404
 from django.shortcuts import render
 
 from events.signals import trigger_event
+from events import services as events_services
 from .models import Contact
 
 
@@ -14,6 +15,8 @@ def contacts_detail_view(request, contact_id=None):
         raise Http404(f"Contact with id of {contact_id} not found")
     context = {"contact": instance}
     trigger_event(instance, is_viewed=True, user=user, request=request)
+    analytics = events_services.get_event_analytics(instance)
+    context["analytics"] = analytics
     return render(request, "contacts/detail.html", context)
 
 
