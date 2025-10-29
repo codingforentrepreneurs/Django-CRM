@@ -1,6 +1,7 @@
 src/mystaticfiles/custom-theme
 src/mystaticfiles/vendors
 src/local-cdn
+src/contacts/samples
 .DS_Store
 
 

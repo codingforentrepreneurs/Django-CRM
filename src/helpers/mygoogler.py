@@ -31,9 +31,9 @@ def get_my_contacts(user, page_token=None):
         service.people()
         .connections()
         .list(
-            pageSize=10,
+            pageSize=2,
             resourceName="people/me",
-            personFields="name,emailAddresses",
+            personFields="names,emailAddresses",
             requestSyncToken=True,
             pageToken=page_token,
         )
@@ -46,11 +46,10 @@ def get_my_other_contacts(user, page_token=None):
     creds = get_user_creds(user)
     service = build_service(creds, service_name="people", version="v1")
     results = (
-        service.people()
-        .otherContacts()
+        service.otherContacts()
         .list(
-            pageSize=10,
-            readMask="name,emailAddresses",
+            pageSize=2,
+            readMask="names,emailAddresses",
             requestSyncToken=True,
             pageToken=page_token,
         )
