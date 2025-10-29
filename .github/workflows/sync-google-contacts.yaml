@@ -9,3 +9,8 @@ jobs:
     steps:
     - name: Checkout djanog-crm
       uses: actions/checkout@v4
+    - name: Install uv with all available options
+      uses: astral-sh/setup-uv@v7
+    - name: Sync deps for Python
+      run: uv sync --frozen
+      
