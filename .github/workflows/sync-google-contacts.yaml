@@ -13,6 +13,10 @@ jobs:
       uses: astral-sh/setup-uv@v7
     - name: Sync deps for Python
       run: uv sync --frozen
+    - name: Setup Django Secret Key One Off
+      run: |
+        MY_SECRET_KEY=$(openssl rand -base64 32)
+        echo "DJANGO_SECRET_KEY=$MY_SECRET_KEY" >> $GITHUB_ENV
     - name: Run Django Management Command for contact sync
       working-directory: ./src
       run: uv run python manage.py sync_contacts --max-results 2
