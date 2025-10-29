@@ -18,7 +18,7 @@ def contacts_detail_view(request, contact_id=None):
     analytics = events_services.get_event_analytics(
         instance, gapfill=True, ignore_types=["unknown", "created"]
     )
-    context["analytics"] = analytics
+    context["analytics"] = list(analytics)
     return render(request, "contacts/detail.html", context)
 
 
