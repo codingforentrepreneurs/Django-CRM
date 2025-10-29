@@ -7,7 +7,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      GOOGLE_OAUTH_CLIENT_ID: "some value"
+      DJANGO_DEBUG: "true"
+      GOOGLE_OAUTH_CLIENT_ID: ${{ secrets.GOOGLE_OAUTH_CLIENT_ID }}
+      GOOGLE_OAUTH_CLIENT_SECRET: ${{ secrets.GOOGLE_OAUTH_CLIENT_SECRET }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
     steps:
     - name: Checkout djanog-crm
       uses: actions/checkout@v4
