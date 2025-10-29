@@ -1,7 +1,7 @@
 from datetime import timedelta
 from django.contrib.contenttypes.models import ContentType
 from django.db.models.functions import Coalesce
-from django.db.models import Count
+from django.db.models import Count, Q
 from django.utils import timezone
 
 from .models import Event
@@ -23,6 +23,14 @@ def get_event_analytics(content_object, gapfill=False, ignore_types=[]):
     end_date = now
     dataset_range = (start_date, end_date)
     # caching -> redis data store
+    # event_type = Event.EventType.VIEWED
+
+    event_type_annotations = {}
+    for _event_type in Event.EventType.values:
+        if _event_type not in ignore_types:
+            event_type_annotations[f"{_event_type}_count"] = Coalesce(
+                Count("id", filter=Q(type=_event_type)), 0
+            )
     if gapfill:
         dataset = (
             Event.timescale.filter(
@@ -32,9 +40,13 @@ def get_event_analytics(content_object, gapfill=False, ignore_types=[]):
             )
             .exclude(type__in=ignore_types)
             .time_bucket_gapfill("time", chunk_time, start_date, end_date)
-            .values("bucket", "type")
-            .annotate(type_count=Coalesce(Count("type"), 0))
-            .order_by("bucket", "type")
+            .values("bucket")
+            # .annotate(
+            #     viewed_count=Coalesce(Count("id", filter=Q(type=event_type)), 0),
+            #     saved_count=Coalesce(Count("id", filter=Q(type=Event.EventType.SAVED)), 0)
+            # )
+            .annotate(**event_type_annotations)
+            .order_by("bucket")
         )
     else:
         dataset = (
@@ -45,8 +57,8 @@ def get_event_analytics(content_object, gapfill=False, ignore_types=[]):
             )
             .exclude(type__in=ignore_types)
             .time_bucket("time", chunk_time)
-            .values("bucket", "type")
-            .annotate(type_count=Count("type"))
-            .order_by("bucket", "type")
+            .values("bucket")
+            .annotate(**event_type_annotations)
+            .order_by("bucket")
         )
     return dataset
