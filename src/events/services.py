@@ -13,9 +13,9 @@ def get_event_analytics(content_object, gapfill=False, ignore_types=[]):
     ModelKlass = content_object.__class__
     ctype = ContentType.objects.get_for_model(ModelKlass)
     now = timezone.now()
-    oldest_time = now - timedelta(hours=6)
+    oldest_time = now - timedelta(hours=72)
 
-    chunk_time = "5 minutes"
+    chunk_time = "1 hour"
     if hasattr(content_object, "created_at"):
         oldest_time = content_object.created_at
 

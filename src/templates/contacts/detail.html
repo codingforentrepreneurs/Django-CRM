@@ -9,13 +9,67 @@
 
   </section>
 
+  <div>
+    <canvas id="viewsChart"></canvas>
+  </div>
+
+
+  <div>
+    <canvas id="savedChart"></canvas>
+  </div>
+
 <div id="my-data">
   {{ analytics|json_script:"analytics" }}
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+
 <script>
   const analyticsData = JSON.parse(document.getElementById("analytics").textContent)
-  console.log(analyticsData) // print
+  console.log(analyticsData)
+  const labels = analyticsData.map(x=>x.bucket)
+  const viewedCount = analyticsData.map(x=>x.viewed_count)
+  const savedCount = analyticsData.map(x=>x.saved_count)
+  const viewedCtx = document.getElementById('viewsChart');
+  const savedCtx = document.getElementById('savedChart');
+
+  new Chart(viewedCtx, {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: '# of Views',
+        data: viewedCount,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  new Chart(savedCtx, {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: '# of Saves',
+        data: savedCount,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
 </script>
 
 {% endblock content %}
