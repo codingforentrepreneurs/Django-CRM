@@ -20,6 +20,9 @@ class Contact(models.Model):
     last_edited_by = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True, related_name="my_contact_edits"
     )  # user.my_contact_edits.all()
+    last_sync = models.DateTimeField(
+        auto_now_add=False, auto_now=False, blank=True, null=True
+    )
     events = GenericRelation(Event)  # contact_instance.events.all()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
