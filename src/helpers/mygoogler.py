@@ -56,3 +56,37 @@ def get_my_other_contacts(user, page_token=None):
         .execute()
     )
     return results
+
+
+def parse_contact_info(data):
+    contacts = []
+    contact_list = data.get("otherContacts") or data.get("connections")
+    if not contact_list:
+        return contacts
+    for contact in contact_list:
+        contact_info = {
+            "email": None,
+            "first_name": None,
+            "last_name": None,
+        }
+        email_addresses = contact.get("emailAddresses", [])
+        for email_data in email_addresses:
+            if email_data.get("metadata", {}).get("primary", False):
+                contact_info["email"] = email_data.get("value")
+                break
+        if not contact_info["email"] and email_addresses:
+            contact_info["email"] = email_addresses[0].get("value")
+        names = contact.get("names", [])
+        if names:
+            primary_name = None
+            for name_data in names:
+                if name_data.get("metadata", {}).get("primary", False):
+                    primary_name = name_data
+                    break
+            if not primary_name:
+                primary_name = names[0]
+            contact_info["first_name"] = primary_name.get("givenName")
+            contact_info["last_name"] = primary_name.get("familyName")
+            # contact_info['full_name'] = primary_name.get('displayName')
+        contacts.append(contact_info)
+    return contacts
