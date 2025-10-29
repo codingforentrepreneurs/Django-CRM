@@ -6,6 +6,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      GOOGLE_OAUTH_CLIENT_ID: "some value"
     steps:
     - name: Checkout djanog-crm
       uses: actions/checkout@v4
