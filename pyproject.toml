@@ -10,6 +10,7 @@ dependencies = [
   "django>=5.2,<6",
   "django-googler>=0.0.17",
   "django-timescaledb>=0.2.13",
+  "google-api-python-client>=2.185",
   "pre-commit>=4.3",
   "psycopg[binary]>=3.2.12",
   "python-dotenv>=1.1.1",

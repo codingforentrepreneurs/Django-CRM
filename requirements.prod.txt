@@ -33,12 +33,27 @@ djangorestframework-simplejwt==5.5.1
     # via django-googler
 filelock==3.20.0
     # via virtualenv
+google-api-core==2.28.1
+    # via google-api-python-client
+google-api-python-client==2.185.0
+    # via django-crm
 google-auth==2.41.1
     # via
     #   django-googler
+    #   google-api-core
+    #   google-api-python-client
+    #   google-auth-httplib2
     #   google-auth-oauthlib
+google-auth-httplib2==0.2.0
+    # via google-api-python-client
 google-auth-oauthlib==1.2.2
     # via django-googler
+googleapis-common-protos==1.71.0
+    # via google-api-core
+httplib2==0.31.0
+    # via
+    #   google-api-python-client
+    #   google-auth-httplib2
 identify==2.6.15
     # via pre-commit
 idna==3.11
@@ -51,6 +66,13 @@ platformdirs==4.5.0
     # via virtualenv
 pre-commit==4.3.0
     # via django-crm
+proto-plus==1.26.1
+    # via google-api-core
+protobuf==6.33.0
+    # via
+    #   google-api-core
+    #   googleapis-common-protos
+    #   proto-plus
 psycopg==3.2.12
     # via django-crm
 psycopg-binary==3.2.12 ; implementation_name != 'pypy'
@@ -63,6 +85,8 @@ pyasn1-modules==0.4.2
     # via google-auth
 pyjwt==2.10.1
     # via djangorestframework-simplejwt
+pyparsing==3.2.5
+    # via httplib2
 python-dotenv==1.1.1
     # via django-crm
 pyyaml==6.0.3
@@ -70,6 +94,7 @@ pyyaml==6.0.3
 requests==2.32.5
     # via
     #   django-crm
+    #   google-api-core
     #   requests-oauthlib
 requests-oauthlib==2.0.0
     # via google-auth-oauthlib
@@ -81,6 +106,8 @@ tzdata==2025.2 ; sys_platform == 'win32'
     # via
     #   django
     #   psycopg
+uritemplate==4.2.0
+    # via google-api-python-client
 urllib3==2.5.0
     # via requests
 virtualenv==20.35.3
