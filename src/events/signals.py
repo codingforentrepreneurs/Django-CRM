@@ -21,7 +21,11 @@ def trigger_event(
         last_sync_time = instance.last_sync
         delta = timedelta(seconds=5)
         now = timezone.now()
-        if (last_sync_time < (now + delta)) and (last_sync_time > (now - delta)):
+        if (
+            last_sync_time
+            and (last_sync_time < (now + delta))
+            and (last_sync_time > (now - delta))
+        ):
             event_type = Event.EventType.SYNC
 
     Klass = instance.__class__

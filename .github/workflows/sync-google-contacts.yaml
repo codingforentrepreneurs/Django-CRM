@@ -2,6 +2,8 @@ name: Sync Google Contacts
 
 on:
   workflow_dispatch:
+  # schedule:
+  #   - cron: '0 1,12 * * *'  # crontab.guru
 
 jobs:
   build:
@@ -25,4 +27,3 @@ jobs:
     - name: Run Django Management Command for contact sync
       working-directory: ./src
       run: uv run python manage.py sync_contacts --max-results 2
-      
